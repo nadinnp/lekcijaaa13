@@ -1,0 +1,80 @@
+<?php
+
+require_once "config.php";
+
+if (isset($_SESSION["user_id"])) {
+    header("Location: dashboard.php");
+    exit;
+}
+
+include "header.php";
+?>
+
+<div class="auth-container">
+
+    <h2 class="text-center">
+        Sign in
+    </h2>
+
+    <?php if (isset($_GET["registered"])): ?>
+        <div class="alert alert-success">
+            Registration successful!
+        </div>
+    <?php endif; ?>
+
+    <?php if (isset($_GET["error"])): ?>
+        <div class="alert alert-danger">
+            Pogresno korisnicko ime ili lozinka!
+        </div>
+    <?php endif; ?>
+
+    <form action="loginlogic.php" method="POST">
+
+        <label for="username" class="form-label">
+            Username
+        </label>
+
+        <input
+            type="text"
+            id="username"
+            name="username"
+            class="form-control"
+            placeholder="Username"
+            required
+        >
+
+        <label for="password" class="form-label">
+            Password
+        </label>
+
+        <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            placeholder="Password"
+            required
+        >
+
+        <button
+            type="submit"
+            name="submit"
+            class="btn btn-primary btn-lg"
+        >
+            Sign in
+        </button>
+
+    </form>
+
+    <small>
+        Don't have an account?
+        <a href="signup.php">Sign Up</a>
+    </small>
+
+    <p class="text-muted mt-5">
+        © Digital School Copy 2026
+    </p>
+
+</div>
+
+<?php include "footer.php"; ?>
